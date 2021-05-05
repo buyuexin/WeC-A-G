@@ -1,0 +1,23 @@
+.item{
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  height: 100rpx;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1rpx solid #c9c9c9;
+}
+.itemname{
+  margin-left: 8%;
+  width: 40%;
+  font-size: 32rpx;
+}
+.arrow{
+  width: 20rpx;
+  height: 20rpx;
+  border-top: 2px solid var(--gray);
+  border-right: 2px solid var(--gray);
+  position: absolute;
+  right: 55rpx;
+  transform: rotate(45deg);
+}

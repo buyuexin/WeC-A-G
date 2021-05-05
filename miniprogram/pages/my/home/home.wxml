@@ -1,0 +1,70 @@
+<view class="bg" style="padding-top: {{pageTopHeight}}px;">
+  <image src="{{useravatar}}" class="usericon" mode="widthFix"></image>
+  <button class="text-xl margin-top-xs" bindtap="getUserProfile" hover-class="{{hover}}">{{username}}</button>
+  <image class="bg-image" src="../../../images/background.jpg"></image>
+</view>
+
+<view class="block">
+  <view class="block_title">我的信息</view>
+  <navigator url="../myrls/myrls" open-type="navigate">
+    <view class="item">
+      <view class="icon"><image src="../../../images/upload.png"></image></view>
+      <view class="itemname">我的发布</view>
+      <view class="arrow"></view>
+    </view>
+  </navigator>
+  <navigator url="../follow/follow" open-type="navigate">
+    <view class="item">
+      <view class="icon"><image src="../../../images/collection.png"></image></view>
+      <view class="itemname">关注赛事</view>
+      <view class="arrow"></view>
+    </view>
+  </navigator>
+  <navigator url="../myinfo/myinfo" open-type="navigate">
+    <view class="item">
+      <view class="icon"><image src="../../../images/icon_set.png"></image></view>
+      <view class="itemname">信息设置</view>
+      <view class="arrow"></view>
+    </view>
+  </navigator>
+</view>
+
+<view class="block">
+  <view class="block_title">关于我们</view>
+  <navigator url="../guide/detail/detail" open-type="navigate">
+    <view class="item">
+      <view class="icon"><image src="../../../images/instruction.png"></image></view>
+      <view class="itemname">使用指南</view>
+      <view class="arrow"></view>
+    </view>
+  </navigator>
+  <view class="feedback">
+    <button class="btn" style="width: 100%;" open-type='feedback'></button>
+    <view class="item">
+      <view class="icon"><image src="../../../images/feedback.png"></image></view>
+      <view class="itemname">意见反馈</view>
+      <view class="arrow-f"></view>
+    </view>
+  </view>
+  <navigator url="../money/money" open-type="navigate">
+    <view class="item">
+      <view class="icon"><image src="../../../images/money.png"></image></view>
+      <view class="itemname">赞赏开发者</view>
+      <view class="arrow"></view>
+    </view>
+  </navigator>
+</view>
+
+<view class='cu-tabbar-height'></view>
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action text-gray" bindtap="pageChange" data-cur="index">
+    <view class="cuIcon-homefill"></view> 首页
+  </view>
+  <view class="action text-gray add-action" bindtap="pageChange" data-cur="events">
+    <button class="cu-btn cuIcon-order bg-gray text-orange shadow"></button>
+    校内赛事
+  </view>
+  <view class="action text-orange" bindtap="pageChange" data-cur="my">
+    <view class="cuIcon-my"></view>我的
+  </view>
+</view>

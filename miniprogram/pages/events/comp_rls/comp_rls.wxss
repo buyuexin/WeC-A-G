@@ -1,0 +1,140 @@
+/* pages/team_rls/team_rls.wxss */
+.text{
+  margin: 0 auto;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background: white;
+  width: 92%;
+  box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
+}
+
+.text-content{
+  margin: 0 auto;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background: #ffffff;
+  height: 280rpx;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.down-info{
+  margin: 0 auto;
+  padding: 20rpx;
+  width: 92%;
+  padding-top: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.text-count{
+  color: var(--weui-FG-2);
+  font-size: 28rpx;
+  display: flex;
+  justify-content: right;
+  text-align: right;
+}
+
+.border{
+  border: 1px solid black;
+}
+
+.ph{
+  font-size: 16px;
+  color: #c9c9c9;
+}
+
+.info{
+  height: auto;
+  padding: 0 20rpx;
+  margin-top: 50rpx;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 20rpx;
+}
+
+.border-bottom{
+  border-bottom: 1rpx solid #c9c9c9;
+}
+.choose{
+  display: flex;
+  flex-direction: row;
+}
+.img-btn{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.img-icon{
+  display: inline-flex;
+  font-size: 24px;
+  height: 26px;
+  width: 26px;
+}
+
+
+.img{
+  display: inline-block;
+  margin: 10rpx;
+  width: min-content;
+  height: 200rpx;
+}
+
+.img image{
+  height: 200rpx;
+}
+
+.view-image{
+  /* width: min-content; */
+  white-space: nowrap;
+  height: 220rpx;
+}
+
+.pick {
+	flex: 1;
+	overflow: hidden;
+  position: relative;
+  margin-left: 46rpx;
+}
+
+.pick>.picker {
+	line-height: 100rpx;
+	font-size: 28rpx;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+}
+
+.date-form-group{
+  background-color: var(--white);
+  padding: 1rpx 30rpx;
+  padding-right: 0rpx;
+	display: flex;
+	align-items: center;
+	min-height: 100rpx;
+	justify-content: space-between;
+}
+
+.date-form-group .title {
+	text-align: justify;
+	padding-right: 30rpx;
+	font-size: 30rpx;
+	position: relative;
+	height: 60rpx;
+	line-height: 60rpx;
+}

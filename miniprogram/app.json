@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/home/home",
+    "pages/comp_info/comp_info",
+    "pages/index/article/article",
+    "pages/my/money/money",
+    "pages/my/myinfo/myinfo",
+    "pages/events/team_rls/team_rls",
+    "pages/my/myrls/myrls",
+    "pages/events/comp_rls/comp_rls",
+    "pages/events/team_info/team_info",
+    "pages/my/home/home",
+    "pages/events/home/home",
+    "pages/my/follow/follow",
+    "pages/events/comp_list/comp_list",
+    "pages/my/guide/detail/detail",
+    "pages/my/guide/guide"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#EA8863",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom",
+    "onReachBottomDistance":50
+  },
+  "usingComponents":{
+    "head":"components/head/head",
+    "cu-custom":"/colorui/components/cu-custom"
+  },
+  "useExtendedLib":{
+    "weui":true
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

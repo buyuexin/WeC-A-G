@@ -1,0 +1,5 @@
+/* components/head/head.wxss */
+.head{
+  width: 100%;
+  background: linear-gradient(to top, #de4e30,#aa062f);
+}

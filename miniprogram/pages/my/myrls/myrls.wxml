@@ -1,0 +1,54 @@
+<cu-custom bgColor="bg-gradual-orange" bgImage="https://636c-cloud-1b148-1302868324.tcb.qcloud.la/bg-bar.jpg?sign=dbcb41c3ac57d34ef6561999e1ab6740&t=1618491486" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的发布</view>
+</cu-custom>
+
+<view class="margin-0 bar align-center flex bg-white">
+  <view class="flex flex-sub height justify-center {{cur==0?'border-bottom':''}}" bindtap="click" data-idx="0">队伍招募</view>
+  <view class="border-right flex justify-center"></view>
+  <view class="flex flex-sub height justify-center {{cur==1?'border-bottom':''}}" bindtap="click" data-idx="1">赛事发布</view>
+</view>
+
+<swiper current="{{cur}}" class="flex align-center margin-top-xs" style="height: {{height_sys}}px" bindchange="bindChange">
+  <!-- 队伍招募 -->
+  <swiper-item>
+    <scroll-view scroll-y class="padding-sm flex align-center" style="height: {{height_sys}}px">
+      <view class="bottomline" wx:if="{{teamList.length==0}}">
+        <image mode="widthFix" src="../../../images/nomore2.png"></image>
+        还没有发布的队伍哦
+      </view>
+      <view class="radius padding-top-xs padding-sm bg-white margin-bottom-xs relative" wx:for="{{teamList}}" wx:key="*this">  
+        <image src="../../../images/triangle.png" class="tri"></image>
+        <view class="item-border-bottom time">
+          <text class="cuIcon-time"></text>
+          {{item.startday}}</view>
+        <view class="" style="min-height: 30rpx;"><text class="cuIcon-title text-orange"></text>
+          队伍名称：{{item.teamname}}</view>
+        <view class="desc" style="min-height: 30rpx;"><text class="cuIcon-title text-orange"></text>
+          关联赛事：{{item.compname}}</view>
+        <view class="tag-list">
+          <view class="tag" wx:for="{{item.tags}}" wx:for-item="tagCon" wx:key="*this">
+            <text class="tag-con">{{tagCon}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+  <!-- 赛事发布 -->
+  <swiper-item>
+    <scroll-view scroll-y class="padding-sm flex align-center" style="height: {{height_sys}}px">
+      <view class="bottomline" wx:if="{{compList.length==0}}">
+        <image mode="widthFix" src="../../../images/nomore2.png"></image>
+        还没有发布的赛事哦
+      </view>
+      <view class="radius padding-sm bg-white margin-bottom-xs relative" wx:for="{{compList}}" wx:key="*this">
+        <image src="../../../images/triangle.png" class="tri"></image>
+        <view class="" style="min-height: 30rpx;"><text class="cuIcon-title text-orange"></text>
+          赛事名称：{{item.compname}}</view>
+        <view class="desc" style="min-height: 30rpx;"><text class="cuIcon-title text-orange"></text>
+          主办方：{{item.sponsor}}</view>
+        </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

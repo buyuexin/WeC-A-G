@@ -1,0 +1,20 @@
+page{
+  background: #fff;
+}
+.container{
+  margin: 0 auto;
+  margin-top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container image{
+  width: 500rpx;
+  height: 500rpx;
+}
+.text{
+  width: 550rpx;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 32rpx;
+}

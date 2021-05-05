@@ -1,0 +1,77 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "pages/index/home/home",
+          "pathName": "pages/index/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/events/comp_list/comp_list",
+          "pathName": "pages/events/comp_list/comp_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/comp_info/comp_info",
+          "pathName": "pages/comp_info/comp_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/follow/follow",
+          "pathName": "pages/my/follow/follow",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/myrls/myrls",
+          "pathName": "pages/my/myrls/myrls",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/events/comp_rls/comp_rls",
+          "pathName": "pages/events/comp_rls/comp_rls",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/events/home/home",
+          "pathName": "pages/events/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/guide/detail/detail",
+          "pathName": "pages/my/guide/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "SComp——index",
+          "pathName": "pages/events/home/home",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+<!--components/head/head.wxml-->
+<view class="head" style="padding-top:{{pageTopHeight}}px;"></view>

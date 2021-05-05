@@ -1,0 +1,136 @@
+/* pages/team_rls/team_rls.wxss */
+.border-right{
+  border-right: 1px solid #f0f0f0;
+}
+
+.text{
+  margin: 0 auto;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background: white;
+  width: 92%;
+  box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
+}
+
+.text-content{
+  margin: 0 auto;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background: #ffffff;
+  height: 280rpx;
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.down-info{
+  margin: 0 auto;
+  padding: 20rpx;
+  width: 92%;
+  padding-top: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.text-count{
+  color: var(--weui-FG-2);
+  font-size: 28rpx;
+  display: flex;
+  justify-content: right;
+  text-align: right;
+}
+
+.ph{
+  font-size: 16px;
+  color: #c9c9c9;
+}
+
+.info{
+  height: auto;
+  padding: 0 20rpx;
+  margin-top: 50rpx;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 20rpx;
+}
+
+.border-bottom{
+  border-bottom: 1rpx solid #c9c9c9;
+}
+
+.img-btn{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.img-icon{
+  display: inline-flex;
+  font-size: 24px;
+  height: 26px;
+  width: 26px;
+}
+
+
+.img{
+  display: inline-block;
+  margin: 10rpx;
+  width: min-content;
+  height: 200rpx;
+}
+
+.img image{
+  height: 200rpx;
+}
+
+.view-image{
+  /* width: min-content; */
+  white-space: nowrap;
+  height: 220rpx;
+}
+
+.tag-list{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  flex-wrap: wrap;
+  min-height: 60rpx;
+  max-width: 360rpx;
+}
+
+.tag{
+  margin-bottom: 10rpx;
+  height: 42rpx;
+  border-radius: 10rpx;
+  background-color: rgb(143, 155,250);
+  margin-right: 10rpx;
+  padding: 0 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tag-con{
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  /* border: 1px #fff solid; */
+}
+
+.tag-input{
+  margin: 0 auto;
+  width: 300rpx;
+  height: 60rpx;
+  box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
+}

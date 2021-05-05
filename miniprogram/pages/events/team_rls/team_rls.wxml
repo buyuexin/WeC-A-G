@@ -1,0 +1,89 @@
+<cu-custom bgColor="bg-gradual-orange"  bgImage="https://636c-cloud-1b148-1302868324.tcb.qcloud.la/bg-bar.jpg?sign=dbcb41c3ac57d34ef6561999e1ab6740&t=1618491486" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">队伍招募发布</view>
+</cu-custom>
+
+<!--文本框-->
+<view class="text">
+  <view class="text-content">
+    <!-- <textarea class="weui-textarea" placeholder="队伍简介，最多可输入300字" maxlength='300' placeholder-class="weui-input__placeholder" bindinput="getContentInput" /> -->
+    <textarea class="weui-textarea" placeholder="队伍简介，最多可输入500字" maxlength='500' placeholder-class="weui-input__placeholder" bindinput="getContentInput" />
+  </view>
+  <view class="down-info bg-white align-center">
+    <view class="img-btn" bindtap="chooseImage">
+        <image src="../../../images/img.png" class="img-icon"></image>
+        <view class="text-sm text-gray">图片</view>
+    </view>
+    <view class="text-count">{{contentCount}}/500</view>
+  </view>
+</view>
+
+<!-- 图片显示 -->
+<scroll-view scroll-x="true" class="view-image text" wx:if="{{images.length!=0}}">
+  <block wx:for="{{images}}" wx:key="*this">
+    <view class="img">
+      <image src="{{item}}" mode="heightFix" data-idx="{{index}}" bindtap="previewImage" bindlongpress="deleteImage"></image>
+    </view>
+  </block>
+</scroll-view>
+
+<view class="info text">
+  <view class="border-bottom cu-form-group">
+    <view class="title">队伍名称</view>
+    <input placeholder="请输入队伍名称" bindinput="getteamname"></input>
+  </view>
+  <view class="border-bottom cu-form-group">
+    <view class="title" >发起人姓名</view>
+    <input value="{{name}}" bindinput="getname"></input>
+  </view>
+  <view class="border-bottom cu-form-group">
+    <!-- <view class="title">所在学校及院系</view> -->
+    <view class="title">所在院系/专业</view>
+    <input value="{{college}}" bindinput="getcollege"></input>
+  </view>
+  <view class="border-bottom cu-form-group">
+    <view class="title">联系方式</view>
+    <input value="{{contact}}" placeholder="(手机号/微信/邮箱/qq等)" bindinput="getcontact"></input>
+  </view>
+  <view class="border-bottom cu-form-group">
+    <view class="title">结束日期</view>
+    <picker mode="date" value="{{endday}}" start="{{endday}}" end="2030-09-01" bindchange="DateChange" bindchange="getchange">
+			<view class="picker">{{endday}}</view>
+		</picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title" bindtap="addTag">
+      <text class="cuIcon-roundadd text-orange" style="font-size: 36rpx;"></text>
+      添加标签</view>
+    <view class="tag-list">
+      <view class="tag" wx:for="{{tags}}" wx:key="index" bindtap="deletetag" data-idx="{{index}}" wx:for-item="tagCon">
+        <text class="tag-con">{{tagCon}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<form bindsubmit="formSubmit">
+  <view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">每次添加一个标签</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        <input class="bg-white tag-input" type="text" name="tag" value="{{inputValue}}"></input>
+      </view>
+      <view class="cu-bar bg-white">
+        <button class="border-right action margin-0 flex-sub text-gray solid-left" bindtap="hideModal">取消</button>
+        <button class="action margin-0 flex-sub text-green solid-left" formType="submit">确定</button>
+      </view>
+    </view>
+  </view>
+</form>
+
+<view class="margin-top ">
+  <button class="block lg" type="primary" bindtap="formsubmit">
+  <text class="cuIcon-upload"></text>发布</button>
+</view>
