@@ -115,10 +115,9 @@ Page{
   display: flex;
   margin: 0 auto;
   flex-direction: row;
-  height: 80rpx;
+  height: 100rpx;
   align-items: center;
   width: 100%;
-  
 }
 
 .border-top{
@@ -134,8 +133,8 @@ Page{
 }
 
 .icon image{
-  width: 57rpx;
-  height: 57rpx;
+  width: 38rpx;
+  height: 38rpx;
 }
 
 .itemname{
@@ -166,7 +165,7 @@ Page{
 .feedback{
   display: flex;
   margin: 0 auto;
-  height: 80rpx;
+  height: 100rpx;
   width: 100%;
   position: relative;
 }

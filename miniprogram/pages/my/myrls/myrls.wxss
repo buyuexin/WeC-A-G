@@ -8,7 +8,7 @@
 }
 
 .border-bottom{
-  border-bottom: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--blue);
 }
 
 .height{

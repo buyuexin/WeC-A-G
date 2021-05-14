@@ -201,7 +201,7 @@
 }
 
 .border-bottom{
-  border-bottom: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--blue);
 }
 
 .height{
@@ -223,8 +223,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 15rpx;
-  border: 1px solid var(--orange);
-  color: var(--orange);
+  border: 1px solid var(--red);
+  color: var(--red);
 }
 
 .bottomline{

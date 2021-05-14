@@ -69,14 +69,7 @@ Page{
   justify-content: center;
   align-items: center;
 }
-.list-tab-item_active{
-  color: orange;
-  width: 20%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .item{
   display: block;
 	background-color: var(--white);

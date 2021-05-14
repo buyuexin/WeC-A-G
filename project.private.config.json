@@ -87,6 +87,12 @@
         {
           "name": "pages/events/discuss/discuss",
           "pathName": "pages/events/discuss/discuss",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/events/team_rls/team_rls",
+          "pathName": "pages/events/team_rls/team_rls",
           "scene": null
         }
       ]
