@@ -1,9 +1,11 @@
 /* pages/index/index.wxss */
+Page{
+  background-color: white;
+}
 .navigator{
   width: 100%;
   height: 100%;
 }
-
 .medium{
   width: 90%;
   display: flex;
@@ -11,14 +13,12 @@
   margin-top: 20rpx;
   margin: 0 auto;
 }
-
 .medium .row{
   display: flex;
   flex: 1;
   flex-direction: row;
   /* background: var(--olive); */
 }
-
 .medium .block{
   flex: 1;
   background-color: var(--grey);
@@ -27,8 +27,6 @@
   text-align: center;
   line-height: 80rpx;
 }
-
-
 .label{
 	display: flex;
 	align-items: center;
@@ -37,11 +35,9 @@
   max-width: 100%;
   font-size: 18px;
 }
-
 .hotbar{
   margin-top: 20rpx;
 }
-
 .nav-item{
   width: 100%;
   height: 100%;
@@ -50,14 +46,116 @@
   justify-content: center;
   align-items: center;
 }
-
 .nav-item>image{
   height: 128rpx;
   width: 128rpx;
 }
-
 .nav-item>view{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: var(--white);
+}
+.list-tab{
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.list-tab-item{
+  width: 20%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list-tab-item_active{
+  color: orange;
+  width: 20%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item{
+  display: block;
+	background-color: var(--white);
+	overflow: hidden;
+	border-radius: 10rpx;
+	margin: 10rpx;
+}
+
+.pic{
+  /* background-color: #ccc; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pic image{
+  width: 95%;
+  max-height: 220rpx;
+  display: block;
+  border-radius: 10px;
+}
+
+.cont{
+  display: flex;
+}
+
+.cont>.img{
+  display: flex;
+  margin: 0 20rpx; 
+  text-align: center;
+  justify-content: center;
+}
+
+.cont>.img>image{
+  width: 190rpx;
+  height: 190rpx;
+  border-radius: 8rpx;
+}
+
+.desc{
+  flex: 1;
+	display: flex;
+	flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-title{
+  /* display: flex; */
+  min-height: 70rpx;
+  font-size: 28rpx;
+  color: var(--black);
+}
+
+.text-title0{
+  /* display: flex; */
+  min-height: 48rpx;
+  font-size: 28rpx;
+  color: var(--black);
+}
+
+.text-content{
+  font-size: 24rpx;
+	color: var(--black);
+  overflow: hidden;
+}
+
+
+.tag{
+  font-size: 20rpx;
+	vertical-align: middle;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0rpx 5rpx;
+	height:35rpx;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+  white-space: nowrap;
+  width: min-content;
 }
 

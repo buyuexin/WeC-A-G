@@ -9,6 +9,8 @@ Page({
       {color:'#e9ad09', title:'商科'},
       {color:'#f71239', title:'文体'},
       {color:'#ff7f1c', title:'综合'}],
+    // 当前列表选中
+    itemCur: 0,
     //当前轮播图的id
     cardCur: 0,
     //轮播图数据
@@ -74,6 +76,15 @@ Page({
     this.setData({
       cardCur: e.detail.current,
     })
+  },
+
+  // 点击五个分类中的一个
+  tabClick(e) {
+    console.log(e.currentTarget.dataset.index)
+    this.setData({
+      itemCur: e.currentTarget.dataset.index,
+    })
+    console.log(this.data.itemCur)
   },
 
 

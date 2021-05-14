@@ -16,45 +16,36 @@
   </swiper-item>
 </swiper>
 
-<view class="bg-white padding-sm">
-  <view class="grid col-5 grid-square">
-    <view wx:for="{{nav}}" wx:key="index">
-      <navigator url="../../events/comp_list/comp_list?title={{index}}">
-        <view class="nav-item">
-          <image class="" src="../../../images/{{index}}.png"></image>
-        </view>
-      </navigator>
-    </view>
+<view class="list-tab">
+  <view class='{{itemCur==index?"list-tab-item_active":"list-tab-item"}}' wx:for="{{nav}}" wx:key="index" bindtap="tabClick" data-index="{{index}}">
+    {{item.title}}
   </view>
 </view>
 
-<view class="cu-bar bg-white solid-bottom hotbar">
-  <view class='label'>
-    <text class='cuIcon-titles text-orange'></text> 
-    热点资讯
-  </view>
-</view>
-
-<view >
-  <navigator url="../article/article">
-  <view class="cu-card article" wx:for="{{articleList}}" wx:key="id">
-      <view class="cu-item shadow">
-        <view class="title">
-          <view class="text-cut">{{item.title}}</view>
+<!--赛事展示-->
+<view class="cu-card" wx:if="{{type==0}}" wx:for="{{competitionList}}" wx:key="*this">
+  <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0">
+    <view class="item cu-item shadow">
+      <view class="desc margin-top-sm justify-start">
+        <view class="pic radius">
+          <image v-if="item.image" mode="aspectFill" src="{{item.image}}"></image>
         </view>
-        <view class="content">
-          <image src="{{item.src}}" mode="aspectFill"></image>
-          <view class="desc">
-            <view class="text-content">{{item.outline}}</view>
-            <view>
-              <view class="cu-tag bg-red light sm round">{{item.tag[0]}}</view>
-              <view class="cu-tag bg-green light sm round">{{item.tag[1]}}</view>
-            </view>
+        <view class="margin-left-xs">
+          <view class="text-title0  margin-top-xs">
+            <text class="tag bg-{{statecolor[states[index].statecolor]}} radius">{{state[states[index].state]}}</text><text class="margin-left-xs">{{item.name}}</text>
           </view>
+          <view class="text-content">报名时间：{{item.regTime}}</view>
+          <view class="text-content">比赛时间：{{item.compTime}}</view>
         </view>
       </view>
-  </view>
-</navigator>
+    </view>
+  </navigator>
+</view>
+
+<!--加载更多时样式显示-->
+<view class="loadmore" wx:if="{{isHideLoadMore}}">
+  <view class="loading"></view>
+  <view class="loadmore__tips">正在加载</view>
 </view>
 
 <view class='cu-tabbar-height'></view>
