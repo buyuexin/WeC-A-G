@@ -246,3 +246,20 @@
   white-space:pre-wrap;
   margin-top: 16rpx;
 } 
+.add{
+	position: fixed;
+	width: 140rpx;
+  bottom: 50rpx;
+  right: 50rpx;
+  border-radius: 50%;
+	z-index: 1024;
+	box-shadow: 3rpx 3rpx 3rpx 3rpx rgb(206, 206, 206);
+}
+.add>image{
+  width: 140rpx;
+  height: 140rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 3rpx 3rpx 3rpx 3rpx rgb(206, 206, 206);
+}

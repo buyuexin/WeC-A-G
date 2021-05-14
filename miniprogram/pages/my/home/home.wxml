@@ -5,7 +5,6 @@
 </view>
 
 <view class="block">
-  <view class="block_title">我的信息</view>
   <navigator url="../myrls/myrls" open-type="navigate">
     <view class="item">
       <view class="icon"><image src="../../../images/upload.png"></image></view>
@@ -13,6 +12,7 @@
       <view class="arrow"></view>
     </view>
   </navigator>
+  <view class="border-top"></view>
   <navigator url="../follow/follow" open-type="navigate">
     <view class="item">
       <view class="icon"><image src="../../../images/collection.png"></image></view>
@@ -20,6 +20,7 @@
       <view class="arrow"></view>
     </view>
   </navigator>
+  <view class="border-top"></view>
   <navigator url="../myinfo/myinfo" open-type="navigate">
     <view class="item">
       <view class="icon"><image src="../../../images/icon_set.png"></image></view>
@@ -27,17 +28,7 @@
       <view class="arrow"></view>
     </view>
   </navigator>
-</view>
-
-<view class="block">
-  <view class="block_title">关于我们</view>
-  <navigator url="../guide/detail/detail" open-type="navigate">
-    <view class="item">
-      <view class="icon"><image src="../../../images/instruction.png"></image></view>
-      <view class="itemname">使用指南</view>
-      <view class="arrow"></view>
-    </view>
-  </navigator>
+  <view class="border-top"></view>
   <view class="feedback">
     <button class="btn" style="width: 100%;" open-type='feedback'></button>
     <view class="item">
@@ -46,6 +37,7 @@
       <view class="arrow-f"></view>
     </view>
   </view>
+  <view class="border-top"></view>
   <navigator url="../money/money" open-type="navigate">
     <view class="item">
       <view class="icon"><image src="../../../images/money.png"></image></view>

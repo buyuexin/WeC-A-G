@@ -5,6 +5,25 @@
   font-weight: 500;
   font-size: 24px;
 }
+.top-block{
+  height: 500rpx;
+  display: flex;
+  position: relative;
+
+}
+.shade{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1024;
+  background-color: rgba(0, 0, 0, 0.425);
+}
+.cover{
+  height: 500rpx;
+  width: 100%;
+}
 
 .item{
   background-color: var(--white);

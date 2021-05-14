@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/events/discuss/discuss",
     "pages/index/home/home",
     "pages/comp_info/comp_info",
     "pages/index/article/article",

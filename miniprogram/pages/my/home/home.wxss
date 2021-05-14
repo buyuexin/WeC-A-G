@@ -118,7 +118,13 @@ Page{
   height: 80rpx;
   align-items: center;
   width: 100%;
+  
+}
+
+.border-top{
   border-top: 1rpx solid #c9c9c9;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .icon{
@@ -152,7 +158,7 @@ Page{
   opacity: 0;
   position: absolute;
   width: 100%;
-  height: 80rpx;
+  height: 110rpx;
   left: 0;
   z-index: 2;
 }

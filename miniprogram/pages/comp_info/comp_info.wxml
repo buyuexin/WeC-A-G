@@ -62,7 +62,7 @@
               <view class="item-60">{{complist.level}}</view>
             </view>
           </view>
-          <view class="item">
+          <view class="item border">
             <text class="con" decode="{{true}}" user-select="true">{{util.format(complist.message)}}</text>
           </view>
           <view class="image">
@@ -117,12 +117,18 @@
               <view class="item-60">{{complist.level}}</view>
             </view>
           </view>
-          <view class="item">
+          <view class="item border">
             <text class="con" decode="{{true}}" user-select="true">{{util.format(complist.content)}}</text>
           </view>
         </view>
       </view>
     </scroll-view>
+
+    <view>
+      <view class="add" >
+        <image src="../../images/chat.png"></image>
+      </view>
+    </view>
   </swiper-item>
 
   <!-- 招募消息 -->
