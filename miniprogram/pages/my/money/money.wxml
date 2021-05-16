@@ -1,4 +1,4 @@
-<cu-custom bgImage="https://636c-cloud-1b148-1302868324.tcb.qcloud.la/bg-bar.jpg?sign=dbcb41c3ac57d34ef6561999e1ab6740&t=1618491486" isBack="{{true}}">
+<cu-custom bgImage="{{true}}" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">赞赏支持</view>
 </cu-custom>
