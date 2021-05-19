@@ -37,9 +37,12 @@
     <input value="{{name}}" bindinput="getname"></input>
   </view>
   <view class="border-bottom cu-form-group">
-    <!-- <view class="title">所在学校及院系</view> -->
-    <view class="title">所在院系/专业</view>
+    <view class="title">所在院系</view>
     <input value="{{college}}" bindinput="getcollege"></input>
+  </view>
+  <view class="border-bottom cu-form-group">
+    <view class="title">就读专业</view>
+    <input value="{{major}}"></input>
   </view>
   <view class="border-bottom cu-form-group">
     <view class="title">联系方式</view>

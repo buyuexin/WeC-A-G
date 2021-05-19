@@ -6,7 +6,7 @@
 <!-- 文本框 -->
 <view class="text">
   <view class="text-content">
-    <textarea class="weui-textarea" placeholder="赛事内容，最多可输入500字" maxlength='500' placeholder-class="weui-input__placeholder" bindinput="getContentInput" />
+    <textarea class="weui-textarea" placeholder="赛事内容，最多可输入800字" maxlength='800' placeholder-class="weui-input__placeholder" bindinput="getContentInput" />
   </view>
   <view class="down-info bg-white align-center">
     <view class="choose">
@@ -19,7 +19,7 @@
           <view class="text-sm text-gray">文件</view>
       </view>
     </view>
-    <view class="text-count">{{contentCount}}/500</view>
+    <view class="text-count">{{contentCount}}/800</view>
   </view>
 </view>
 

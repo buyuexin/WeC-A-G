@@ -1,7 +1,10 @@
 // pages/events/team_info/team_info.js
 Page({
   data: {
-    teaminfo:[]
+    teaminfo:[],
+    title: 'Teamup队招募：财务分析人员',
+    tags: ['图像识别','挑战杯','软件学院'],
+    bg_image: "../../../images/cover.jpg",
   },
 
 

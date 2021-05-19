@@ -3,40 +3,62 @@
 	<view slot="content">队伍详情</view>
 </cu-custom>
 
-<view class="top-block border">
-  <view class="shade "></view>
-  <image class="cover" src="../../../images/cover.jpg" mode="aspectFill"></image>
+
+<view class="top-block">
+  <view class="shade">
+    <view class="cover-content ">
+      <!-- 标题 -->
+      <view class="team-name ">{{title}}</view>
+      <!-- 标签 -->
+      <view class="tag-view ">
+        <view class="tag" wx:for="{{tags}}" wx:for-item="tagCon" wx:key="*this">
+          <text class="tag-con">{{tagCon}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 封面背景图 -->
+  <image class="cover" src="{{bg_image}}" mode="aspectFill"></image>
 </view>
 
 <view class="cu-card case">
   <view class="cu-item shadow">
-    <view class="item solid-bottom">
+    <!-- 发起人 -->
+    <view class="item">
       <view class="item-left">
-        <view class="line-blue bg-white cu-tag radius">队伍名称</view>
-      </view>
-      <view>{{teaminfo.teamname}}</view>
-    </view>
-    <view class="item solid-bottom">
-      <view class="item-left">
-        <view class="line-blue bg-white cu-tag radius">发起人姓名</view>
+        <view>发起人</view>
       </view>
       <view>{{teaminfo.name}}</view>
     </view>
-    <view class="item solid-bottom">
+    <view class="solid-bottom" style="width: 92%; margin: 0 auto;"></view>
+    <!-- 所在院系 -->
+    <view class="item">
       <view class="item-left">
-        <view class="line-blue bg-white cu-tag radius">所在院系/专业</view>
+        <view>所在院系</view>
       </view>
       <view>{{teaminfo.college}}</view>
     </view>
-    <view class="item solid-bottom">
+    <view class="solid-bottom" style="width: 92%; margin: 0 auto;"></view>
+    <!-- 就读专业 -->
+    <view class="item">
       <view class="item-left">
-        <view class="line-blue bg-white cu-tag radius">联系方式</view>
+        <view>就读专业</view>
+      </view>
+      <view>{{teaminfo.major}}</view>
+    </view>
+    <view class="solid-bottom" style="width: 92%; margin: 0 auto;"></view>
+    <!-- 联系方式 -->
+    <view class="item">
+      <view class="item-left">
+        <view>联系方式</view>
       </view>
       <view><text user-select="true">{{teaminfo.contact}}</text></view>
     </view>
+    <view class="solid-bottom" style="width: 92%; margin: 0 auto;"></view>
+    <!-- 队伍简介 -->
     <view class="item">
       <view class="item-left">
-        <view class="line-blue bg-white cu-tag radius">队伍简介</view>
+        <view>队伍简介</view>
       </view>
     </view>
     <text class="detail" space="emsp" user-select="true">{{teaminfo.content}}</text>
