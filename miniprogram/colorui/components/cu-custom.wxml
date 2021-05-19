@@ -1,5 +1,5 @@
 <view class="cu-custom" style="height:{{CustomBar}}px">
-  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(https://636c-cloud-1b148-1302868324.tcb.qcloud.la/bg-bar.jpg?sign=df7499c88a51779c1b5460d7cc7cf38a&t=1621136786)':''}}">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(https://636c-cloud-1b148-1302868324.tcb.qcloud.la/bg-bar-blue.jpg?sign=32c1fbb526e07b01894deb9831c4af3d&t=1621384541)':''}}">
     <view class="action" bindtap="BackPage" wx:if="{{isBack}}">
       <text class="cuIcon-back"></text>
       <slot name="backText"></slot>

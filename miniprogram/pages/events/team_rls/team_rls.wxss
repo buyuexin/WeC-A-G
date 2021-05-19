@@ -2,7 +2,6 @@
 .border-right{
   border-right: 1px solid #f0f0f0;
 }
-
 .text{
   margin: 0 auto;
   margin-top: 20rpx;
@@ -53,7 +52,7 @@
 .info{
   height: auto;
   padding: 0 20rpx;
-  margin-top: 50rpx;
+  margin-top: 40rpx;
 }
 
 .item{
@@ -83,22 +82,27 @@
   width: 26px;
 }
 
+.bg-green{
+  background-color: var(--greenLight);
+}
 
 .img{
   display: inline-block;
-  margin: 10rpx;
+  margin: 0 auto;
   width: min-content;
-  height: 200rpx;
+  height: 220rpx;
+  padding: 20rpx;
 }
 
 .img image{
-  height: 200rpx;
+  height: 180rpx;
 }
 
 .view-image{
   /* width: min-content; */
   white-space: nowrap;
   height: 220rpx;
+  overflow: scroll;
 }
 
 .tag-list{
@@ -133,4 +137,50 @@
   width: 300rpx;
   height: 60rpx;
   box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
+}
+.my-img{
+  display: inline-block;
+  margin: 10rpx;
+  /* min-height: 200rpx; */
+  height: 200rpx;
+  width: 200rpx;
+  background-color: #e7e7e7;
+}
+.covers{
+  width: max-content;
+}
+.choose-cover{
+  width: 92%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  height: 60rpx;
+  line-height: 64rpx;
+  position: relative;
+}
+.choose-cover-text{
+  padding-left: 60rpx;
+  /* color: var(--blue); */
+}
+.choose-cover-image>image{
+  height: 60rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+.scroll-cover{
+  margin: 0 auto;
+  border-radius: 10rpx;
+  background: white;
+  width: 92%;
+  box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
+}
+.each-cover{
+  position: relative;
+}
+.choose-state{
+  position: absolute;
+  right: 20;
+  bottom: 20;
+  z-index: 1024;
 }

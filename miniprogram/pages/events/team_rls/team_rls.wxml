@@ -1,25 +1,25 @@
 <cu-custom bgImage="{{true}}" isBack="{{true}}">
 	<view slot="backText">返回</view>
-	<view slot="content">队伍招募发布</view>
+	<view slot="content">队伍招募</view>
 </cu-custom>
 
 <!--文本框-->
-<view class="text">
+<view class="margin-top-sm margin-auto text">
   <view class="text-content">
     <!-- <textarea class="weui-textarea" placeholder="队伍简介，最多可输入300字" maxlength='300' placeholder-class="weui-input__placeholder" bindinput="getContentInput" /> -->
-    <textarea class="weui-textarea" placeholder="队伍简介，最多可输入500字" maxlength='500' placeholder-class="weui-input__placeholder" bindinput="getContentInput" />
+    <textarea class="weui-textarea" placeholder="队伍简介，最多可输入800字" maxlength='800' placeholder-class="weui-input__placeholder" bindinput="getContentInput" />
   </view>
   <view class="down-info bg-white align-center">
     <view class="img-btn" bindtap="chooseImage">
         <image src="../../../images/img.png" class="img-icon"></image>
         <view class="text-sm text-gray">图片</view>
     </view>
-    <view class="text-count">{{contentCount}}/500</view>
+    <view class="text-count">{{contentCount}}/800</view>
   </view>
 </view>
 
 <!-- 图片显示 -->
-<scroll-view scroll-x="true" class="view-image text" wx:if="{{images.length!=0}}">
+<scroll-view scroll-x="true" class="view-image text " wx:if="{{images.length!=0}}">
   <block wx:for="{{images}}" wx:key="*this">
     <view class="img">
       <image src="{{item}}" mode="heightFix" data-idx="{{index}}" bindtap="previewImage" bindlongpress="deleteImage"></image>
@@ -29,8 +29,8 @@
 
 <view class="info text">
   <view class="border-bottom cu-form-group">
-    <view class="title">队伍名称</view>
-    <input placeholder="请输入队伍名称" bindinput="getteamname"></input>
+    <view class="title">标题</view>
+    <input placeholder="请输入招募消息标题" bindinput="getteamname"></input>
   </view>
   <view class="border-bottom cu-form-group">
     <view class="title" >发起人姓名</view>
@@ -83,7 +83,32 @@
   </view>
 </form>
 
-<view class="margin-top ">
+<!-- 选择封面 -->
+<view class="choose-cover margin-top-sm">
+  <view class="choose-cover-image">
+    <image mode="heightFix" src="../../../images/tixing.png"></image>
+  </view>
+  <view class="choose-cover-text">选择封面</view>
+</view>
+<scroll-view scroll-x="true" class="view-image scroll-cover">
+  <block>
+    <!-- 点击添加图片 -->
+    <view class="img">
+      <image mode="heightFix" src="../../../images/clickaddimage.png"></image>
+    </view>
+    <!-- 我添加的图片 -->
+    <view class="my-img" wx:if="{{my_image!=''}}">
+      <image src="{{my_image}}" mode="heightFix"></image>
+    </view>
+  </block>
+  <block wx:for="{{covers}}" wx:key="*this">
+    <view class="img {{isClick==index?'bg-green':''}}">
+      <image src="{{item}}" mode="heightFix"></image>
+    </view>
+  </block>
+</scroll-view>
+
+<view class="margin-top margin-bottom">
   <button class="block lg" type="primary" bindtap="formsubmit">
   <text class="cuIcon-upload"></text>发布</button>
 </view>
