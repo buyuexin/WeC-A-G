@@ -6,46 +6,50 @@
 	<view slot="content">首页</view>
 </cu-custom>
 
-<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-  <swiper-item wx:for="{{swiperList}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
-    <view class= "swiper-item">
-      <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0" open-type="navigate" class="navigator">
-        <image src="{{item.image}}" mode="aspectFill"></image>
+<view>
+  <swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{swiperList}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
+      <view class= "swiper-item">
+        <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0" open-type="navigate" class="navigator">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+        </navigator>
+      </view>
+    </swiper-item>
+  </swiper>
+  
+  <view class="list-tab">
+    <view class='list-tab-item {{itemCur==index?"text-blue":""}}' wx:for="{{nav}}" wx:key="index" bindtap="tabClick" data-index="{{index}}">
+      {{item.title}}
+    </view>
+  </view>
+  
+  <!--赛事展示-->
+  <scroll-view scroll-y="true" style="height: {{height_scroll}}px" scroll-top="{{scrollTop}}" bindscrolltolower="reachBottom">
+    <view class="cu-card" wx:for="{{competitionList}}" wx:key="*this">
+      <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0">
+        <view class="item cu-item shadow">
+          <view class="desc margin-top-sm justify-start">
+            <view class="pic radius">
+              <image v-if="item.image" mode="aspectFill" src="{{item.image}}"></image>
+            </view>
+            <view class="margin-left-xs">
+              <view class="text-title0  margin-top-xs">
+                <text class="tag bg-{{statecolor[states[index].statecolor]}} radius">{{state[states[index].state]}}</text><text class="margin-left-xs">{{item.name}}</text>
+              </view>
+              <view class="text-content">报名时间：{{item.regTime}}</view>
+              <view class="text-content">比赛时间：{{item.compStart}}～{{item.compEnd}}</view>
+            </view>
+          </view>
+        </view>
       </navigator>
     </view>
-  </swiper-item>
-</swiper>
-
-<view class="list-tab">
-  <view class='list-tab-item {{itemCur==index?"text-blue":""}}' wx:for="{{nav}}" wx:key="index" bindtap="tabClick" data-index="{{index}}">
-    {{item.title}}
-  </view>
-</view>
-
-<!--赛事展示-->
-<view class="cu-card" wx:for="{{competitionList}}" wx:key="*this">
-  <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0">
-    <view class="item cu-item shadow">
-      <view class="desc margin-top-sm justify-start">
-        <view class="pic radius">
-          <image v-if="item.image" mode="aspectFill" src="{{item.image}}"></image>
-        </view>
-        <view class="margin-left-xs">
-          <view class="text-title0  margin-top-xs">
-            <text class="tag bg-{{statecolor[states[index].statecolor]}} radius">{{state[states[index].state]}}</text><text class="margin-left-xs">{{item.name}}</text>
-          </view>
-          <view class="text-content">报名时间：{{item.regTime}}</view>
-          <view class="text-content">比赛时间：{{item.compStart}}～{{item.compEnd}}</view>
-        </view>
-      </view>
+    
+    <!--加载更多时样式显示-->
+    <view class="loadmore" wx:if="{{isHideLoadMore}}">
+      <view class="loading"></view>
+      <view class="loadmore__tips">正在加载</view>
     </view>
-  </navigator>
-</view>
-
-<!--加载更多时样式显示-->
-<view class="loadmore" wx:if="{{isHideLoadMore}}">
-  <view class="loading"></view>
-  <view class="loadmore__tips">正在加载</view>
+  </scroll-view>
 </view>
 
 <view class='cu-tabbar-height'></view>

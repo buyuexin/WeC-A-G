@@ -26,15 +26,13 @@ Page({
     covers: ['https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover1.jpeg?sign=079a3d15aac69780d518ee85717d3f40&t=1621385759', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover2.jpeg?sign=f0e65fefed5084aa7e12e31d12cd0da5&t=1621385779', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover3.jpg?sign=bb1dd39f22bd64fcaa5f75b081913c94&t=1621385792', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover4.jpg?sign=1b49a7de4906cbd975ef44a0fce4df5e&t=1621385804', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover5.jpg?sign=a159da6a836b938368dc3b57815a1108&t=1621385821'],
     my_image:'',
     cloud_my_image:'',
-    isClick: 0,
+    clickIndex: 0,
   },
-
 
   //获取赛事名
   getcompname(){
     this.data.compname=wx.getStorageSync('compname')
   },
-
 
   // 获取输入文本框的字数
   getContentInput(e){
@@ -45,7 +43,6 @@ Page({
       contentCount: len
     })
   },
-
 
   // 选择图片
   chooseImage(e) {
@@ -95,7 +92,6 @@ Page({
     })
   },
 
-
   // 长按删除图片
   deleteImage: function (e) {//删除图片
     var that = this;
@@ -120,13 +116,11 @@ Page({
     })
   },
 
-
   addTag(e) {
     this.setData({
       modalName: 'DialogModal2',
     })
   },
-
 
   hideModal(e) {
     this.setData({
@@ -135,20 +129,17 @@ Page({
     })
   },
 
-
   getteamname(e){
     this.setData({
       teamname:e.detail.value
     })
   },
 
-
   getname(e){
     this.setData({
       name:e.detail.value
     })
   },
-
 
   getcollege(e){
     this.setData({
@@ -224,6 +215,16 @@ Page({
           }
         }
       }
+    })
+  },
+
+  // 点击封面
+  coverClick(e) {
+    var that = this;
+    let index = e.currentTarget.dataset.index;
+    console.log(index)
+    that.setData({
+      clickIndex: index
     })
   },
 

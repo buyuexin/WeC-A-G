@@ -10,7 +10,10 @@
   width: 92%;
   box-shadow: 0rpx 8rpx 8rpx 3rpx rgb(221,220,220);
 }
-
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
 .text-content{
   margin: 0 auto;
   padding: 20rpx;

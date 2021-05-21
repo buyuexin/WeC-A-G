@@ -95,17 +95,17 @@
 </view>
 <scroll-view scroll-x="true" class="view-image scroll-cover">
   <block>
-    <!-- 点击添加图片 -->
-    <view class="img" bindtap="chooseImage2">
-      <image mode="heightFix" src="../../../images/clickaddimage.png"></image>
+    <view class="img">
+      <!-- 点击添加图片 -->
+      <image mode="heightFix" bindtap="chooseImage2" src="../../../images/clickaddimage.png"></image>
     </view>
-    <!-- 我添加的图片 -->
-    <view class="my-img" wx:if="{{my_image!=''}}">
+    <view class="img {{clickIndex==-1?'bg-green':''}}" bindtap="coverClick" data-index="{{-1}}" wx:if="{{my_image!=''}}">
+      <!-- 我添加的图片 -->
       <image src="{{my_image}}" mode="heightFix"></image>
     </view>
   </block>
   <block wx:for="{{covers}}" wx:key="*this">
-    <view class="img {{isClick==index?'bg-green':''}}">
+    <view class="img {{clickIndex==index?'bg-green':''}}" bindtap="coverClick" data-index="{{index}}">
       <image src="{{item}}" mode="heightFix"></image>
     </view>
   </block>

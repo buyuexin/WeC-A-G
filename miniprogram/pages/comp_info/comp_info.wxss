@@ -248,18 +248,16 @@
 } 
 .add{
 	position: fixed;
-	width: 140rpx;
-  bottom: 50rpx;
-  right: 50rpx;
+	width: min-content;
+  bottom: 40rpx;
+  right: 40rpx;
   border-radius: 50%;
 	z-index: 1024;
-	box-shadow: 3rpx 3rpx 3rpx 3rpx rgb(206, 206, 206);
 }
 .add>image{
-  width: 140rpx;
-  height: 140rpx;
-  background-color: #fff;
-  border-radius: 50%;
+  width: 120rpx;
+  height: 120rpx;
+  /* background-color: #fff; */
   display: block;
-  box-shadow: 3rpx 3rpx 3rpx 3rpx rgb(206, 206, 206);
+  opacity: 0.8;
 }

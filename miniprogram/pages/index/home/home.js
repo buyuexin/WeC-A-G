@@ -20,6 +20,8 @@ Page({
     end:10,
     //存储赛事列表
     competitionList:[],
+    // 滚动条位置
+    scrollTop: 0,
     states:[],
     state:app.globalData.state,
     statecolor:app.globalData.statecolor,
@@ -28,7 +30,18 @@ Page({
 
 
   onLoad(options) {
-    var that=this
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        var Client = wx.getMenuButtonBoundingClientRect();
+        var height = res.windowHeight - (res.statusBarHeight + Client.height + (Client.top - res.statusBarHeight) * 2)
+        that.setData({
+          clientHeight: res.windowHeight,
+          height_scroll: height - 600 / 750 * wx.getSystemInfoSync().windowWidth,
+        });
+      }
+    });
+    console.log(that.data.height_sys);
     wx.cloud.callFunction({//获取用户openID
       name:"Gusermess",
       success(res){
@@ -92,16 +105,12 @@ Page({
 
   // 点击五个分类中的一个
   tabClick(e) {
-    var that=this
-    console.log(e.currentTarget.dataset.index)
-    that.setData({
-      itemCur: e.currentTarget.dataset.index,
-    })
-    console.log(that.data.itemCur)
+    var that = this
+    let index = e.currentTarget.dataset.index
     wx.cloud.callFunction({
       name:"Bcomplist",
       data:{
-        a:that.data.itemCur,
+        a: index,
       },
       success(res){
         console.log(res)
@@ -112,7 +121,10 @@ Page({
         console.log(that.data.competitionList)
       },
     })
-    
+    that.setData({
+      itemCur: index,
+      scrollTop: 0,
+    })
   },
 
   //初始化states函数功能封装
@@ -200,7 +212,7 @@ Page({
   },
 
   //触底加载更多
-  onReachBottom(){
+  reachBottom(){
     var that=this
     this.data.end+=10
     this.setData({
