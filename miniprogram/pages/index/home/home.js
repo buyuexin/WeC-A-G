@@ -1,5 +1,6 @@
 let DB=wx.cloud.database()
 let openid=""
+const app = getApp();
 Page({
   data: {
     title: null,
@@ -15,17 +16,14 @@ Page({
     cardCur: 0,
     //轮播图数据
     swiperList:[],
-    //热点资讯数据
-    articleList:[
-      {
-        title: "【必考】大学最有含金量的9大类证书！ ",
-        src: "http://cdn1.52jingsai.com/portal/201810/31/131938axfalcczicu5c9zu.jpg",
-        outline: "拥有证书不仅说明你的学习能力很强，而且你还勤奋努力，而这才是企业所看重的，也是你未来的生存之道。其实有很多的同学很想知道，大学必考的类目和证书有哪些，哪些又是比较有价值的，为此小编整理了相关信息，希望会对大家有所帮助！",
-        tag:["大学","考证"]
-      },
-    ],
     //用于触底加载更多
-    end:2
+    end:10,
+    //存储赛事列表
+    competitionList:[],
+    states:[],
+    state:app.globalData.state,
+    statecolor:app.globalData.statecolor,
+    isLoadMore: false,
   },
 
 
@@ -67,8 +65,22 @@ Page({
         })
       }
     })
+    //初始itemCur值为0
+    wx.cloud.callFunction({
+      name:"Bcomplist",
+      data:{
+        a:that.data.itemCur,
+      },
+      success(res){
+        console.log(res)
+        that.setData({
+          competitionList:res.result.data.slice(0,that.data.end)
+        })
+        that.creatstates()
+        console.log(that.data.competitionList)
+      },
+    })
   },
-
 
   // cardSwiper
   cardSwiper(e) {
@@ -80,13 +92,100 @@ Page({
 
   // 点击五个分类中的一个
   tabClick(e) {
+    var that=this
     console.log(e.currentTarget.dataset.index)
-    this.setData({
+    that.setData({
       itemCur: e.currentTarget.dataset.index,
     })
-    console.log(this.data.itemCur)
+    console.log(that.data.itemCur)
+    wx.cloud.callFunction({
+      name:"Bcomplist",
+      data:{
+        a:that.data.itemCur,
+      },
+      success(res){
+        console.log(res)
+        that.setData({
+          competitionList:res.result.data.slice(0,that.data.end)
+        })
+        that.creatstates()
+        console.log(that.data.competitionList)
+      },
+    })
+    
   },
 
+  //初始化states函数功能封装
+  creatstates(){
+    var that=this
+    //初始化states
+    var state=""
+    var statecolor=""
+    console.log(that.data.competitionList)
+    var newcompetitionList=that.data.competitionList
+    var timestamp = Date.parse(new Date());//获取当前时间戳
+    var regStarttimestamp=0
+    var regEndtimestamp=0
+    var compStarttimestamp=0
+    var compEndtimestamp=0
+    for(var index in newcompetitionList){
+      regStarttimestamp=new Date(newcompetitionList[index].regStart).getTime();//将报名开始时间转为时间戳
+      regEndtimestamp=new Date(newcompetitionList[index].regEnd).getTime()+86486399;//报名结束时间当天的23:59:59
+      compStarttimestamp=new Date(newcompetitionList[index].compStart).getTime();//将比赛开始时间转为时间戳
+      compEndtimestamp=new Date(newcompetitionList[index].compEnd).getTime()+86486399;//比赛结束时间当天的23:59:59
+      if(timestamp<=regStarttimestamp){
+        state=0,
+        statecolor=0,
+        that.data.states.push(
+          {
+            state:state,
+            statecolor:statecolor
+          }
+        )
+    }else if(regStarttimestamp<=timestamp&&timestamp<=regEndtimestamp){
+        state=1,
+        statecolor=1
+        that.data.states.push(
+          {
+            state:state,
+            statecolor:statecolor
+          }
+        )
+    }else if(regEndtimestamp<=timestamp&&timestamp<=compStarttimestamp){
+        state=2,
+        statecolor=2
+        that.data.states.push(
+          {
+            state:state,
+            statecolor:statecolor
+          }
+        )
+    }else if(compStarttimestamp<=timestamp&&timestamp<=compEndtimestamp){
+      state=3,
+      statecolor=3
+      that.data.states.push(
+        {
+          state:state,
+          statecolor:statecolor
+        }
+      )
+    }else{
+        state=4,
+        statecolor=4
+        that.data.states.push(
+          {
+            state:state,
+            statecolor:statecolor
+          }
+        )
+    }
+    }
+    //不知道哪来的bug，for循环了两次
+    console.log(that.data.states.slice(0,newcompetitionList.length))
+    that.setData({
+      states:that.data.states.slice(0,newcompetitionList.length)
+    })
+  },
 
   // tab页面跳转
   pageChange(e){
@@ -100,19 +199,26 @@ Page({
     }
   },
 
-
   //触底加载更多
   onReachBottom(){
     var that=this
-    that.data.end=that.data.end+3//具体加载多少待定
-    DB.collection("articleList").get({
+    this.data.end+=10
+    this.setData({
+      isHideLoadMore: true
+    })
+    wx.cloud.callFunction({
+      name:"Bcomplist",
+      data:{
+        a:that.data.itemCur
+      },
       success(res){
-        if(that.data.end>res.data.length){//何时到底待数据量确定后来完善
+        if(that.data.end>res.result.data.length){
           wx.showToast({ title: '到底了哟~', })
         }else{
           that.setData({
-            articleList:res.data.slice(0,that.data.end)
+            competitionList:res.result.data.slice(0,that.data.end),
           })
+          that.creatstates()
         }
       }
     })

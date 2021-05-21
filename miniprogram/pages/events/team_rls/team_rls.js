@@ -13,6 +13,7 @@ Page({
     icon:"",
     name:"",
     college: '',  // 所在学校及院系(可以是该用户填的university+college)
+    major:'',
     teamname:"",  
     contact: '',  // 联系方式
     startday: '',
@@ -21,8 +22,10 @@ Page({
     content: "",
     tags: [], // 标签列表
     images:[],  // 上传的图片列表
+    cloud_images:[],
     covers: ['https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover1.jpeg?sign=079a3d15aac69780d518ee85717d3f40&t=1621385759', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover2.jpeg?sign=f0e65fefed5084aa7e12e31d12cd0da5&t=1621385779', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover3.jpg?sign=bb1dd39f22bd64fcaa5f75b081913c94&t=1621385792', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover4.jpg?sign=1b49a7de4906cbd975ef44a0fce4df5e&t=1621385804', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover5.jpg?sign=a159da6a836b938368dc3b57815a1108&t=1621385821'],
     my_image:'',
+    cloud_my_image:'',
     isClick: 0,
   },
 
@@ -69,6 +72,18 @@ Page({
    // console.log(this.data.images)
   },
 
+  chooseImage2(e) {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'], // 可选择原图或压缩
+        sourceType: ['album','camera'], // 开放相册/相机
+        success: res => {
+          this.setData({
+            my_image:res.tempFilePaths
+          })
+        }
+      })
+  },
 
   // 预览图片
   previewImage(e){
@@ -141,6 +156,12 @@ Page({
     })
   },
 
+  getmajor(e){
+    this.setData({
+      major:e.detail.value
+    })
+  },
+
 
   getcontact(e){
     this.setData({
@@ -206,7 +227,6 @@ Page({
     })
   },
 
-
   onLoad: function (options) {
     var NeedUseGetuserproifle = wx.getStorageSync('NeedUseGetuserprofile')
     // console.log(NeedUseGetuserproifle)
@@ -250,8 +270,7 @@ Page({
       })
     })
   },
-
-
+  //判断能否提交
   getstandard(){
     if(this.data.content==""||this.data.teamname==""||this.data.name==""||this.data.college==""||this.data.contact==""){
       standard=0
@@ -259,8 +278,7 @@ Page({
       standard=1  
     }
   },
-
-
+  //提交表格
   formsubmit(){
     var that=this
     that.getcompname()
@@ -279,6 +297,24 @@ Page({
     that.setData({
       startday:date.toLocaleDateString()
     })
+    //将图片上传至云存储
+    for(var index in that.data.images)
+    {
+      wx.cloud.uploadFile({
+        cloudPath:new Date().getTime()+'.png',
+        filePath:that.data.images[index],
+        success:res=>{
+          that.data.cloud_images = that.data.cloud_images.concat(res.fileID)
+        }
+      })
+    }
+    wx.cloud.uploadFile({
+      cloudPath:new Date().getTime()+'.png',
+      filePath:that.data.my_image,
+      success:res=>{
+        that.data.cloud_my_image = res.fileID
+      }
+    })
     if(schoolcomp!=0){
       console.log(1)
       wx.cloud.database().collection("comp_team_rls").add({
@@ -290,6 +326,7 @@ Page({
           icon:that.data.icon,
           name:that.data.name,
           college: that.data.college,  // 所在学校及院系(可以是该用户填的university+college)
+          major:that.data.major,
           teamname:that.data.teamname,  
           contact: that.data.contact,  // 联系方式
           startday: that.data.startday,
@@ -297,7 +334,8 @@ Page({
           contentCount: that.data.contentCount,
           content: that.data.content,
           tags: that.data.tags,
-          images:that.data.images
+          images:that.data.cloud_images,
+          my_image:that.data.cloud_my_image
         }
       })
     }else{
@@ -310,6 +348,7 @@ Page({
           icon:that.data.icon,
           name:that.data.name,
           college: that.data.college,  
+          major:that.data.major,
           teamname:that.data.teamname,  
           contact: that.data.contact,  
           startday: that.data.startday,
@@ -317,7 +356,8 @@ Page({
           contentCount: that.data.contentCount,
           content: that.data.content,
           tags: that.data.tags,
-          images:that.data.images
+          images:that.data.cloud_images,
+          my_image:that.data.cloud_my_image
         }
       })
       }

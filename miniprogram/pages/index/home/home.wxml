@@ -23,7 +23,7 @@
 </view>
 
 <!--赛事展示-->
-<view class="cu-card" wx:if="{{type==0}}" wx:for="{{competitionList}}" wx:key="*this">
+<view class="cu-card" wx:for="{{competitionList}}" wx:key="*this">
   <navigator url="../../comp_info/comp_info?class={{item.class}}&id={{item.id}}&schoolcomp=0">
     <view class="item cu-item shadow">
       <view class="desc margin-top-sm justify-start">
@@ -35,7 +35,7 @@
             <text class="tag bg-{{statecolor[states[index].statecolor]}} radius">{{state[states[index].state]}}</text><text class="margin-left-xs">{{item.name}}</text>
           </view>
           <view class="text-content">报名时间：{{item.regTime}}</view>
-          <view class="text-content">比赛时间：{{item.compTime}}</view>
+          <view class="text-content">比赛时间：{{item.compStart}}～{{item.compEnd}}</view>
         </view>
       </view>
     </view>

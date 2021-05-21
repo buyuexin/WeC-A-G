@@ -10,7 +10,6 @@ Page({
     use:true
   },
 
-
   getUserProfile(e) {
     var that = this
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
@@ -21,8 +20,16 @@ Page({
         desc: '获取头像及昵称', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
           console.log(res)
+          wx.cloud.uploadFile({
+            cloudPath:new Date().getTime()+'.png',
+            filePath:res.userInfo.avatarUrl,
+            success:res=>{
+              that.setData({
+                useravatar:res.fileID,
+              })
+            }
+          })
           that.setData({
-            useravatar:res.userInfo.avatarUrl,
             username:res.userInfo.nickName,
           })
           wx.setStorageSync('useravatarurl', res.userInfo.avatarUrl)
@@ -51,7 +58,6 @@ Page({
       })
     }
   },
-  
 
   // tab页面跳转
   pageChange(e){
@@ -64,7 +70,6 @@ Page({
       })
     }
   },
-
 
   onLoad: function (options) {
     var that=this

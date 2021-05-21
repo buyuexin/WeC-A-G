@@ -42,7 +42,7 @@
   </view>
   <view class="border-bottom cu-form-group">
     <view class="title">就读专业</view>
-    <input value="{{major}}"></input>
+    <input value="{{major}}" bindinput="getmajor"></input>
   </view>
   <view class="border-bottom cu-form-group">
     <view class="title">联系方式</view>
@@ -96,7 +96,7 @@
 <scroll-view scroll-x="true" class="view-image scroll-cover">
   <block>
     <!-- 点击添加图片 -->
-    <view class="img">
+    <view class="img" bindtap="chooseImage2">
       <image mode="heightFix" src="../../../images/clickaddimage.png"></image>
     </view>
     <!-- 我添加的图片 -->
