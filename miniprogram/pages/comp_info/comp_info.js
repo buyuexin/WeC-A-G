@@ -38,10 +38,10 @@ Page({
         },
         success(res){
           console.log(res)
-          var changeteamList=res.result.data
-          if(changeteamList.length>1){changeteamList.splice(0,1)}
+          // var changeteamList=res.result.data
+          // if(changeteamList.length>1){changeteamList.splice(0,1)}
           that.setData({
-            teamList:changeteamList,
+            teamList:res.result.data.reverse(),
           })
         }
       })

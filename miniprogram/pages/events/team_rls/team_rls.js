@@ -2,6 +2,7 @@
 var schoolcomp=wx.getStorageSync("schoolcomp")
 var util = require('../../../utils/util.js');
 let standard=1
+let isoutput=0
 Page({
   data: {
     isShowModel: null,  // 是否弹出标签输入框
@@ -29,10 +30,12 @@ Page({
     clickIndex: 0,
   },
 
+
   //获取赛事名
   getcompname(){
     this.data.compname=wx.getStorageSync('compname')
   },
+
 
   // 获取输入文本框的字数
   getContentInput(e){
@@ -43,6 +46,7 @@ Page({
       contentCount: len
     })
   },
+
 
   // 选择图片
   chooseImage(e) {
@@ -70,13 +74,15 @@ Page({
   },
 
   chooseImage2(e) {
+    var that=this
       wx.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'], // 可选择原图或压缩
         sourceType: ['album','camera'], // 开放相册/相机
         success: res => {
-          this.setData({
-            my_image:res.tempFilePaths
+          that.setData({
+            my_image:res.tempFilePaths,
+            clickIndex:-1
           })
         }
       })
@@ -91,6 +97,7 @@ Page({
       urls: images,
     })
   },
+
 
   // 长按删除图片
   deleteImage: function (e) {//删除图片
@@ -116,11 +123,13 @@ Page({
     })
   },
 
+
   addTag(e) {
     this.setData({
       modalName: 'DialogModal2',
     })
   },
+
 
   hideModal(e) {
     this.setData({
@@ -129,17 +138,20 @@ Page({
     })
   },
 
+
   getteamname(e){
     this.setData({
       teamname:e.detail.value
     })
   },
 
+
   getname(e){
     this.setData({
       name:e.detail.value
     })
   },
+
 
   getcollege(e){
     this.setData({
@@ -152,7 +164,15 @@ Page({
       major:e.detail.value
     })
   },
-
+  //点击封面
+  coverClick(e) {
+    var that = this;
+    let index = e.currentTarget.dataset.index;
+    console.log(index)
+    that.setData({
+      clickIndex: index
+    })
+  },
 
   getcontact(e){
     this.setData({
@@ -218,16 +238,6 @@ Page({
     })
   },
 
-  // 点击封面
-  coverClick(e) {
-    var that = this;
-    let index = e.currentTarget.dataset.index;
-    console.log(index)
-    that.setData({
-      clickIndex: index
-    })
-  },
-
   onLoad: function (options) {
     var NeedUseGetuserproifle = wx.getStorageSync('NeedUseGetuserprofile')
     // console.log(NeedUseGetuserproifle)
@@ -282,6 +292,7 @@ Page({
   //提交表格
   formsubmit(){
     var that=this
+    isoutput=0
     that.getcompname()
     that.getstandard()
     console.log(schoolcomp)
@@ -298,75 +309,263 @@ Page({
     that.setData({
       startday:date.toLocaleDateString()
     })
-    //将图片上传至云存储
-    for(var index in that.data.images)
+    //如果没选择图片
+    if(that.data.images.length==0)
     {
-      wx.cloud.uploadFile({
-        cloudPath:new Date().getTime()+'.png',
+            if(that.data.clickIndex==-1){//上传个人选择图片
+              console.log(that.data.my_image)
+                wx.cloud.uploadFile({
+                cloudPath: "img/" + new Date().getTime() + "-" + Math.floor(Math.random() * 1000),
+                filePath: that.data.my_image[0],
+                success: res => {
+                  console.log(res.fileID);
+                  that.setData({
+                    cloud_my_image: res.fileID,
+                  });
+                  if (schoolcomp != 0) {
+                    console.log(1);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        schoolcomp: schoolcomp,
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.cloud_my_image
+                      }
+                    });
+                  } else {
+                    console.log(2);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.cloud_my_image
+                      }
+                    });
+                  }
+                  wx.navigateBack({
+                    delta: 0,
+                  });
+                },
+                fail: console.error
+              })
+            }else{//上传默认图片
+                  if (schoolcomp != 0) {
+                    console.log(1);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        schoolcomp: schoolcomp,
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.covers[that.data.clickIndex]
+                      }
+                    });
+                  } else {
+                    console.log(2);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.covers[that.data.clickIndex]
+                      }
+                    });
+                  }
+                  wx.navigateBack({
+                    delta: 0,
+                  });
+            
+          }
+    }else{//选择了图片
+      for(var index in that.data.images)
+    {
+      console.log(index)
+      console.log(that.data.images[index])
+       wx.cloud.uploadFile({
+        cloudPath:"img/" + new Date().getTime() +"-"+ Math.floor(Math.random() * 1000),
         filePath:that.data.images[index],
         success:res=>{
+          console.log(res.fileID)
           that.data.cloud_images = that.data.cloud_images.concat(res.fileID)
-        }
+          console.log(that.data.cloud_images)
+          console.log('数组长度为'+that.data.images.length+'；index的大小为'+index)
+          if((index==that.data.images.length-1)&&(isoutput==0))
+          {
+            isoutput=1
+            console.log('数组长度为'+that.data.images.length+'；index的大小为'+index)
+            if(that.data.clickIndex==-1){//上传个人选择图片
+              console.log(that.data.my_image)
+                wx.cloud.uploadFile({
+                cloudPath: "img/" + new Date().getTime() + "-" + Math.floor(Math.random() * 1000),
+                filePath: that.data.my_image[0],
+                success: res => {
+                  console.log(res.fileID);
+                  that.setData({
+                    cloud_my_image: res.fileID,
+                  });
+                  if (schoolcomp != 0) {
+                    console.log(1);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        schoolcomp: schoolcomp,
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.cloud_my_image
+                      }
+                    });
+                  } else {
+                    console.log(2);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.cloud_my_image
+                      }
+                    });
+                  }
+                  wx.navigateBack({
+                    delta: 0,
+                  });
+                },
+                fail: console.error
+              })
+            }else{//上传默认图片
+                  console.log(res.fileID);
+                  that.setData({
+                    cloud_my_image: res.fileID,
+                  });
+                  if (schoolcomp != 0) {
+                    console.log(1);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        schoolcomp: schoolcomp,
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.covers[that.data.clickIndex]
+                      }
+                    });
+                  } else {
+                    console.log(2);
+                    wx.cloud.database().collection("comp_team_rls").add({
+                      data: {
+                        compname: that.data.compname,
+                        class: that.data.class,
+                        id: that.data.id,
+                        icon: that.data.icon,
+                        name: that.data.name,
+                        college: that.data.college,
+                        major: that.data.major,
+                        teamname: that.data.teamname,
+                        contact: that.data.contact,
+                        startday: that.data.startday,
+                        endday: that.data.endday,
+                        contentCount: that.data.contentCount,
+                        content: that.data.content,
+                        tags: that.data.tags,
+                        images: that.data.cloud_images,
+                        my_image: that.data.covers[that.data.clickIndex]
+                      }
+                    });
+                  }
+                  wx.navigateBack({
+                    delta: 0,
+                  });
+            }
+          }
+        },
+        fail:console.error
       })
     }
-    wx.cloud.uploadFile({
-      cloudPath:new Date().getTime()+'.png',
-      filePath:that.data.my_image,
-      success:res=>{
-        that.data.cloud_my_image = res.fileID
-      }
-    })
-    if(schoolcomp!=0){
-      console.log(1)
-      wx.cloud.database().collection("comp_team_rls").add({
-        data:{
-          schoolcomp:schoolcomp,
-          compname:that.data.compname,
-          class:that.data.class,
-          id:that.data.id,
-          icon:that.data.icon,
-          name:that.data.name,
-          college: that.data.college,  // 所在学校及院系(可以是该用户填的university+college)
-          major:that.data.major,
-          teamname:that.data.teamname,  
-          contact: that.data.contact,  // 联系方式
-          startday: that.data.startday,
-          endday:that.data.endday,
-          contentCount: that.data.contentCount,
-          content: that.data.content,
-          tags: that.data.tags,
-          images:that.data.cloud_images,
-          my_image:that.data.cloud_my_image
-        }
-      })
-    }else{
-      console.log(2)
-      wx.cloud.database().collection("comp_team_rls").add({
-        data:{
-          compname:that.data.compname,
-          class:that.data.class,
-          id:that.data.id,
-          icon:that.data.icon,
-          name:that.data.name,
-          college: that.data.college,  
-          major:that.data.major,
-          teamname:that.data.teamname,  
-          contact: that.data.contact,  
-          startday: that.data.startday,
-          endday:that.data.endday,
-          contentCount: that.data.contentCount,
-          content: that.data.content,
-          tags: that.data.tags,
-          images:that.data.cloud_images,
-          my_image:that.data.cloud_my_image
-        }
-      })
-      }
-      
-      wx.navigateBack({
-        delta: 0,
-      })
-    }else{
+    }}else{//信息不完整，无法发布
       wx.showToast({
         title: '请将信息补充完整',
         icon: 'none',    //如果要纯文本，不要icon，将值设为'none'

@@ -25,7 +25,7 @@
             <view class="title">{{complist.name}}</view>
             <view class="collect">
               <view bindtap="collect">
-                <text class="cuIcon-{{islike==1?'favorfill':'favor'}}  margin-right-xs" style="font-size: 36rpx;"></text>
+                <text class="cuIcon-{{islike==1?'likefill':'favor'}}  margin-right-xs" style="font-size: 36rpx;"></text>
                 关注
               </view>
             </view>
@@ -174,10 +174,10 @@
   </swiper-item>
 </swiper>
 
-<view>
+<!-- <view>
   <navigator url="../events/discuss/discuss">
     <view class="add" >
       <image src="../../images/chat.png"></image>
     </view>
   </navigator>
-</view>
+</view> -->

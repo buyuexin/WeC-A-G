@@ -19,16 +19,7 @@ Page({
       wx.getUserProfile({
         desc: '获取头像及昵称', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
-          console.log(res)
-          wx.cloud.uploadFile({
-            cloudPath:new Date().getTime()+'.png',
-            filePath:res.userInfo.avatarUrl,
-            success:res=>{
-              that.setData({
-                useravatar:res.fileID,
-              })
-            }
-          })
+          console.log(res)//res.userInfo.avatarUrl
           that.setData({
             username:res.userInfo.nickName,
           })
@@ -36,19 +27,35 @@ Page({
           wx.setStorageSync('username', res.userInfo.nickName)
           wx.setStorageSync('NeedUseGetuserprofile', 0)
           wx.setStorageSync('use', false)
-          wx.cloud.database().collection("users").add({
-            data:{
-              useropenid:that.data.openid,
-              avatarUrl:that.data.useravatar,
-              nickname:that.data.username,
-              name:"",
-              gender:0,
-              phonenum:"",
-              email:"",
-              school:"",
-              college:"",
-              major:"",
-              grade:0,
+          wx.getImageInfo({
+            src:res.userInfo.avatarUrl,
+            success (res) {//res.path
+              wx.cloud.uploadFile({
+                cloudPath:"img/" + new Date().getTime() +"-"+ Math.floor(Math.random() * 1000),
+                filePath:res.path,
+                success:res=>{
+                  console.log(res.fileID)
+                  that.setData({
+                    useravatar:res.fileID,
+                  })
+                  wx.cloud.database().collection("users").add({
+                    data:{
+                      useropenid:that.data.openid,
+                      avatarUrl:that.data.useravatar,
+                      nickname:that.data.username,
+                      name:"",
+                      gender:0,
+                      phonenum:"",
+                      email:"",
+                      school:"",
+                      college:"",
+                      major:"",
+                      grade:0,
+                    }
+                  })
+                },
+                fail:console.error
+              })
             }
           })
           this.setData({

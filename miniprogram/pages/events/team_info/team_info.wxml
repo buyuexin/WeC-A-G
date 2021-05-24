@@ -8,17 +8,17 @@
   <view class="shade">
     <view class="cover-content ">
       <!-- 标题 -->
-      <view class="team-name ">{{title}}</view>
+      <view class="team-name ">{{teaminfo.teamname}}</view>
       <!-- 标签 -->
       <view class="tag-view ">
-        <view class="tag" wx:for="{{tags}}" wx:for-item="tagCon" wx:key="*this">
+        <view class="tag" wx:for="{{teaminfo.tags}}" wx:for-item="tagCon" wx:key="*this">
           <text class="tag-con">{{tagCon}}</text>
         </view>
       </view>
     </view>
   </view>
   <!-- 封面背景图 -->
-  <image class="cover" src="{{bg_image}}" mode="aspectFill"></image>
+  <image class="cover" src="{{teaminfo.my_image}}" mode="aspectFill"></image>
 </view>
 
 <view class="cu-card case">

@@ -30,6 +30,7 @@ Page({
 
 
   onLoad(options) {
+    var that=this
     var that = this;
     wx.getSystemInfo({
       success: function(res) {
@@ -110,7 +111,7 @@ Page({
     wx.cloud.callFunction({
       name:"Bcomplist",
       data:{
-        a: index,
+        a:index,
       },
       success(res){
         console.log(res)
