@@ -3,6 +3,7 @@ App({
   onLaunch: function() {
     if (wx.cloud) {
       wx.cloud.init({
+        env:'cloud-1b148',
         traceUser: true
       })
     }

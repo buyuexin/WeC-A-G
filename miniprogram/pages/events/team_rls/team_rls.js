@@ -275,10 +275,20 @@ Page({
       that.setData({
         icon:res.data[0].avatarUrl,
         name:res.data[0].name,
-        college:res.data[0].college+res.data[0].major, 
+        college:res.data[0].college, 
+        major:res.data[0].major,
         class:classvalue,
         id:idvalue
       })
+      if(res.data[0].email!=""){
+        that.setData({
+          contact:res.data[0].email
+        })
+      }else if(res.data[0].phonenum!=""){
+        that.setData({
+          contact:res.data[0].phonenum
+        })
+      }else{}//contact置为空，contact本身为空
     })
   },
   //判断能否提交

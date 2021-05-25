@@ -14,10 +14,10 @@
           <image src="../../../images/img.png" class="img-icon"></image>
           <view class="text-sm text-gray">图片</view>
       </view>
-      <view class="img-btn">
+      <!-- <view class="img-btn">
           <image src="../../../images/file.png" class="img-icon"></image>
           <view class="text-sm text-gray">文件</view>
-      </view>
+      </view> -->
     </view>
     <view class="text-count">{{contentCount}}/800</view>
   </view>
