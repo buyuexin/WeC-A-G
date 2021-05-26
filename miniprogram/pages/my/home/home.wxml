@@ -1,6 +1,6 @@
 <view class="bg" style="padding-top: {{pageTopHeight}}px;">
   <image src="{{useravatar}}" class="usericon" mode="widthFix"></image>
-  <button class="text-xl margin-top-xs" bindtap="getUserProfile" hover-class="{{hover}}">{{username}}</button>
+  <button class="text-xl margin-top-xs text-white" bindtap="getUserProfile" hover-class="{{hover}}">{{username}}</button>
   <image class="bg-image" src="../../../images/background.jpg"></image>
 </view>
 

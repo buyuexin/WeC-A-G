@@ -65,13 +65,13 @@ Page({
       list = this.data.collegeList;
     }
     let index = e.currentTarget.dataset.idx;
-    let status = list[index].status;//选中项的status
-    let name = list[index].name;//选中项的name
+    let status = list[index].status; //选中项的status
+    let name = list[index].name; //选中项的name
     let word = this.data.keyword;
-    if(status == 'line-gray') {//选中前为灰色，则点击后置为橘色
+    if(status == 'line-gray') { //选中前为灰色，则点击后置为蓝色
       status = 'line-orange';
-      word.push(name);//将name推到word中
-    } else {//选中前为橘色，则点击后置为灰色
+      word.push(name); //将name推到word中
+    } else { //选中前为蓝色，则点击后置为灰色
       status = 'line-gray';
       let i = word.indexOf(name);
       if(i>-1) {
@@ -90,7 +90,7 @@ Page({
 
    //确定 用大数据去匹配标准，而不是用标准去大数据内搜索满足标准的数据
   confirm(e){
-    let that=this;
+    let that = this;
     let word = that.data.keyword;
     let list = that.data.competitionList;
     console.log(word);
@@ -108,6 +108,9 @@ Page({
       that.setData({
         competitionList: list
       })
+    }
+    else {
+      this.getalllist();
     }
     that.setData({
       screenShow: 'none',

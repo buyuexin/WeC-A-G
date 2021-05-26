@@ -32,19 +32,19 @@
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">主办方</view>
+              <view>主 办 方</view>
             </view>
             <view class="item-right">{{complist.sponsor}}</view>
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">报名时间</view>
+              <view>报名时间</view>
             </view>
             <view class="item-right">{{complist.regTime}}</view>
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">比赛时间</view>
+              <view>比赛时间</view>
             </view>
             <view class="item-right">{{complist.compTime}}</view>
           </view>
@@ -56,7 +56,7 @@
               <view class="item-60">{{complist.type}}</view>
             </view>
             <view class="item item-50">
-              <view class="item-40">
+              <view class="item-40 margin-left-sm">
                 <view class="line-blue bg-white cu-tag radius">级别</view>
               </view>
               <view class="item-60">{{complist.level}}</view>
@@ -80,26 +80,26 @@
             <view class="title">{{complist.compname}}</view>
             <view class="collect">
               <view bindtap="collect">
-                <text class="cuIcon-{{islike==1?'likefill':'like'}}  margin-right-xs" style="font-size: 36rpx;"></text>
+                <text class="cuIcon-{{islike==1?'favorfill':'favor'}}  margin-right-xs" style="font-size: 36rpx;"></text>
                 关注
               </view>
             </view>
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">主办方</view>
+              <view>主 办 方</view>
             </view>
             <view class="item-right">{{complist.sponsor}}</view>
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">报名时间</view>
+              <view>报名时间</view>
             </view>
             <view class="item-right">{{complist.regStart}}~{{complist.regEnd}}</view>
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view class="line-blue bg-white cu-tag radius">比赛时间</view>
+              <view>比赛时间</view>
             </view>
             <view class="item-right">{{complist.compStart}}~{{complist.compEnd}}</view>
           </view>
