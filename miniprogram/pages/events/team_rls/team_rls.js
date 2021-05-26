@@ -24,7 +24,7 @@ Page({
     tags: [], // 标签列表
     images:[],  // 上传的图片列表
     cloud_images:[],
-    covers: ['https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover1.jpeg?sign=079a3d15aac69780d518ee85717d3f40&t=1621385759', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover2.jpeg?sign=f0e65fefed5084aa7e12e31d12cd0da5&t=1621385779', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover3.jpg?sign=bb1dd39f22bd64fcaa5f75b081913c94&t=1621385792', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover4.jpg?sign=1b49a7de4906cbd975ef44a0fce4df5e&t=1621385804', 'https://636c-cloud-1b148-1302868324.tcb.qcloud.la/covers/cover5.jpg?sign=a159da6a836b938368dc3b57815a1108&t=1621385821'],
+    covers: ['https://636f-comp-assistant-0gwpijvx2dc4b360-1306023792.tcb.qcloud.la/covers/cover1.jpeg?sign=bbfa7d2d87ee8c9e23215eb8e1c90495&t=1622054051', 'https://636f-comp-assistant-0gwpijvx2dc4b360-1306023792.tcb.qcloud.la/covers/cover2.jpeg?sign=963c29ad11fb424b25271bb27044653c&t=1622054109', 'https://636f-comp-assistant-0gwpijvx2dc4b360-1306023792.tcb.qcloud.la/covers/cover3.jpeg?sign=b613559317cf49954bbe6fa425d45e7c&t=1622054134', 'https://636f-comp-assistant-0gwpijvx2dc4b360-1306023792.tcb.qcloud.la/covers/cover4.jpeg?sign=738a90bf066d2156cb94483eaa05950d&t=1622054148', 'https://636f-comp-assistant-0gwpijvx2dc4b360-1306023792.tcb.qcloud.la/covers/cover5.jpeg?sign=8192b55858bf616084c5e3afb2f9824b&t=1622054161'],
     my_image:'',
     cloud_my_image:'',
     clickIndex: 0,

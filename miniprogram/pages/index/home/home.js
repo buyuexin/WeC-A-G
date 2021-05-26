@@ -1,4 +1,4 @@
-let DB=wx.cloud.database()
+let DB = wx.cloud.database()
 let openid=""
 const app = getApp();
 Page({
@@ -30,6 +30,7 @@ Page({
 
 
   onLoad(options) {
+    console.log(DB)
     var that=this
     var that = this;
     wx.getSystemInfo({
@@ -42,7 +43,6 @@ Page({
         });
       }
     });
-    console.log(that.data.height_sys);
     wx.cloud.callFunction({//获取用户openID
       name:"Gusermess",
       success(res){
@@ -71,7 +71,6 @@ Page({
       }
     })
     //初始化swiperList
-    var that=this
     DB.collection("swiperList").get({
       success(res){
         that.setData({//此处用setData让数据从逻辑层传到渲染层，实现动态渲染
@@ -79,6 +78,7 @@ Page({
         })
       }
     })
+    // console.log(swiperList)
     //初始itemCur值为0
     wx.cloud.callFunction({
       name:"Bcomplist",

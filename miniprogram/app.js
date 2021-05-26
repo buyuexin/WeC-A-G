@@ -3,7 +3,7 @@ App({
   onLaunch: function() {
     if (wx.cloud) {
       wx.cloud.init({
-        env:'cloud-1b148',
+        env:'comp-assistant-0gwpijvx2dc4b360',
         traceUser: true
       })
     }
