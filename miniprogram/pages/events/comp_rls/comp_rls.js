@@ -174,28 +174,50 @@ Page({
 
 
   onLoad: function (options) {
-    var NeedUseGetuserproifle = wx.getStorageSync('NeedUseGetuserprofile')
-    // console.log(NeedUseGetuserproifle)
     var that=this
-    if(NeedUseGetuserproifle==0){
-      console.log('可正常进入event/home页面')
-    }else{
-      wx.showModal({
-           openid:"提示",
-           content: "请先完成授权",
-           success: function(res){
-             if (res.confirm) {//点击确定后跳转至信息完善界面
-                wx.redirectTo({
-                   url: '../../my/home/home',
-                })
-             } else if (res.cancel) {
-                 wx.redirectTo({
-                   url: '../../index/home/home',
-                })
-             }
-           }
-      })
-    }
+    var openid = wx.getStorageSync('openid')
+    wx.cloud.callFunction({//判断用户是否存在users中，存在则正常使用，不存在则跳转
+      name:"IfopenID",
+      data:{
+        Iopenid:openid//Iopenid为参数
+      },
+      success(res){
+        // console.log(res)
+        if(res.result.data.length==0){//用户不存在
+          wx.showModal({
+                       openid:"提示",
+                       content: "请先完成授权",
+                       success: function(res){
+                         if (res.confirm) {//点击确定后跳转至信息完善界面
+                            wx.redirectTo({
+                               url: '../../my/home/home',
+                            })
+                         } else if (res.cancel) {//点击取消后跳转至首页
+                             wx.redirectTo({
+                               url: '../../index/home/home',
+                            })
+                         }
+                       }
+                  })
+        }else if(res.result.data[0].school==''||res.result.data[0].college==''||res.result.data[0].major==''){
+          wx.showModal({
+                       openid:"提示",
+                       content: "请先前往个人信息设置界面完善学校、学院、专业信息",
+                       success: function(res){
+                         if (res.confirm) {//点击确定后跳转至信息完善界面
+                            wx.redirectTo({
+                               url: '../../my/myinfo/myinfo',
+                            })
+                         } else if (res.cancel) {//点击取消后跳转至首页
+                             wx.redirectTo({
+                               url: '../../index/home/home',
+                            })
+                         }
+                       }
+                  })
+        }
+      }
+    })
     schoolcomp=wx.getStorageSync("schoolcomp")
     // 调用函数时，传入new Date()参数，返回值是日期和时间
     var date = util.formatDate(new Date());

@@ -1,4 +1,4 @@
-let DB = wx.cloud.database()
+let DB=wx.cloud.database()
 let openid=""
 const app = getApp();
 Page({
@@ -30,7 +30,6 @@ Page({
 
 
   onLoad(options) {
-    console.log(DB)
     var that=this
     var that = this;
     wx.getSystemInfo({
@@ -43,6 +42,7 @@ Page({
         });
       }
     });
+    //console.log(that.data.height_sys);
     wx.cloud.callFunction({//获取用户openID
       name:"Gusermess",
       success(res){
@@ -71,6 +71,7 @@ Page({
       }
     })
     //初始化swiperList
+    var that=this
     DB.collection("swiperList").get({
       success(res){
         that.setData({//此处用setData让数据从逻辑层传到渲染层，实现动态渲染
@@ -78,7 +79,6 @@ Page({
         })
       }
     })
-    // console.log(swiperList)
     //初始itemCur值为0
     wx.cloud.callFunction({
       name:"Bcomplist",
@@ -131,6 +131,7 @@ Page({
   //初始化states函数功能封装
   creatstates(){
     var that=this
+    that.data.states=[]
     //初始化states
     var state=""
     var statecolor=""
@@ -146,6 +147,7 @@ Page({
       regEndtimestamp=new Date(newcompetitionList[index].regEnd).getTime()+86486399;//报名结束时间当天的23:59:59
       compStarttimestamp=new Date(newcompetitionList[index].compStart).getTime();//将比赛开始时间转为时间戳
       compEndtimestamp=new Date(newcompetitionList[index].compEnd).getTime()+86486399;//比赛结束时间当天的23:59:59
+      console.log(timestamp+';'+regStarttimestamp+';'+regEndtimestamp+';'+compStarttimestamp+';'+compEndtimestamp)
       if(timestamp<=regStarttimestamp){
         state=0,
         statecolor=0,
@@ -155,7 +157,7 @@ Page({
             statecolor:statecolor
           }
         )
-    }else if(regStarttimestamp<=timestamp&&timestamp<=regEndtimestamp){
+    }else if((regStarttimestamp<=timestamp)&&(timestamp<=regEndtimestamp)){
         state=1,
         statecolor=1
         that.data.states.push(
@@ -164,7 +166,7 @@ Page({
             statecolor:statecolor
           }
         )
-    }else if(regEndtimestamp<=timestamp&&timestamp<=compStarttimestamp){
+    }else if((regEndtimestamp<=timestamp)&&(timestamp<=compStarttimestamp)){
         state=2,
         statecolor=2
         that.data.states.push(
@@ -173,7 +175,7 @@ Page({
             statecolor:statecolor
           }
         )
-    }else if(compStarttimestamp<=timestamp&&timestamp<=compEndtimestamp){
+    }else if((compStarttimestamp<=timestamp)&&(timestamp<=compEndtimestamp)){
       state=3,
       statecolor=3
       that.data.states.push(

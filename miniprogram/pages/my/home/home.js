@@ -61,6 +61,18 @@ Page({
           this.setData({
             hover:"none",
           })
+          wx.showModal({
+                       openid:"提示",
+                       content: "是否立刻前往完善学校、学院、专业等信息",
+                       success: function(res){
+                         if (res.confirm) {//点击确定后跳转至信息完善界面
+                            wx.redirectTo({
+                               url: '../../my/myinfo/myinfo',
+                            })
+                         } else if (res.cancel) {//点击取消后跳转至首页
+                         }
+                       }
+                  })
         }
       })
     }
@@ -80,16 +92,22 @@ Page({
 
   onLoad: function (options) {
     var that=this
-    var NeedUseGetuserproifle = wx.getStorageSync('NeedUseGetuserprofile')
-    that.data.use=wx.getStorageSync('use')
-    if(NeedUseGetuserproifle==0){
-      that.setData({
-        useravatar:wx.getStorageSync('useravatarurl'),
-        username:wx.getStorageSync('username'),
-        hover:"none",
-      })
-    }else{
-      
-    }
+    wx.cloud.callFunction({//判断用户是否存在users中，存在则正常使用，不存在则跳转
+      name:"IfopenID",
+      data:{
+        Iopenid:that.data.openid//Iopenid为参数
+      },
+      success(res){
+        // console.log(res)
+        if(res.result.data.length==0){//用户不存在         
+        }else{//用户存在
+          that.setData({
+            useravatar:wx.getStorageSync('useravatarurl'),
+            username:wx.getStorageSync('username'),
+            hover:"none",
+          })
+        }
+      }
+    })
   },
 })

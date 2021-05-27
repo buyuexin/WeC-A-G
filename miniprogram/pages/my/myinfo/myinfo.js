@@ -123,8 +123,8 @@ Page({
 
 
   back(){
-    wx.navigateBack({
-      delta:1
+    wx.redirectTo({
+       url: '../../my/myinfo/myinfo',
     })
   },
 

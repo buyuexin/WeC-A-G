@@ -186,8 +186,6 @@
   border-radius: 6rpx;
   color: var(--blue);
 }
-
-
 .item-right{
   width: 80%;
   padding-left: 8rpx;
@@ -195,6 +193,7 @@
 
 .item-40{
   width: 30%;
+  /* text-align: center; */
 }
 
 .item-60{

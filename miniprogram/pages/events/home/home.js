@@ -65,13 +65,13 @@ Page({
       list = this.data.collegeList;
     }
     let index = e.currentTarget.dataset.idx;
-    let status = list[index].status; //选中项的status
-    let name = list[index].name; //选中项的name
+    let status = list[index].status;//选中项的status
+    let name = list[index].name;//选中项的name
     let word = this.data.keyword;
-    if(status == 'line-gray') { //选中前为灰色，则点击后置为蓝色
+    if(status == 'line-gray') {//选中前为灰色，则点击后置为橘色
       status = 'line-orange';
-      word.push(name); //将name推到word中
-    } else { //选中前为蓝色，则点击后置为灰色
+      word.push(name);//将name推到word中
+    } else {//选中前为橘色，则点击后置为灰色
       status = 'line-gray';
       let i = word.indexOf(name);
       if(i>-1) {
@@ -90,7 +90,7 @@ Page({
 
    //确定 用大数据去匹配标准，而不是用标准去大数据内搜索满足标准的数据
   confirm(e){
-    let that = this;
+    let that=this;
     let word = that.data.keyword;
     let list = that.data.competitionList;
     console.log(word);
@@ -108,8 +108,7 @@ Page({
       that.setData({
         competitionList: list
       })
-    }
-    else {
+    }else {
       this.getalllist();
     }
     that.setData({
@@ -249,28 +248,51 @@ Page({
 
 
   onLoad: function () {
-    var NeedUseGetuserproifle = wx.getStorageSync('NeedUseGetuserprofile')
+    var openid = wx.getStorageSync('openid')
     // console.log(NeedUseGetuserproifle)
     var that=this
-    if(NeedUseGetuserproifle==0){
-      console.log('可正常进入event/home页面')
-    }else{
-      wx.showModal({
-           openid:"提示",
-           content: "请先完成授权",
-           success: function(res){
-             if (res.confirm) {//点击确定后跳转至信息完善界面
-                wx.redirectTo({
-                   url: '../../my/home/home',
-                })
-             } else if (res.cancel) {
-                 wx.redirectTo({
-                   url: '../../index/home/home',
-                })
-             }
-           }
-      })
-    }
+    wx.cloud.callFunction({//判断用户是否存在users中，存在则正常使用，不存在则跳转
+      name:"IfopenID",
+      data:{
+        Iopenid:openid//Iopenid为参数
+      },
+      success(res){
+        // console.log(res)
+        if(res.result.data.length==0){//用户不存在
+          wx.showModal({
+                       openid:"提示",
+                       content: "请先完成授权",
+                       success: function(res){
+                         if (res.confirm) {//点击确定后跳转至信息完善界面
+                            wx.redirectTo({
+                               url: '../../my/home/home',
+                            })
+                         } else if (res.cancel) {//点击取消后跳转至首页
+                             wx.redirectTo({
+                               url: '../../index/home/home',
+                            })
+                         }
+                       }
+                  })
+        }else if(res.result.data[0].school==''||res.result.data[0].college==''||res.result.data[0].major==''){
+          wx.showModal({
+                       openid:"提示",
+                       content: "请先前往个人信息设置界面完善学校、学院、专业信息",
+                       success: function(res){
+                         if (res.confirm) {//点击确定后跳转至信息完善界面
+                            wx.redirectTo({
+                               url: '../../my/myinfo/myinfo',
+                            })
+                         } else if (res.cancel) {//点击取消后跳转至首页
+                             wx.redirectTo({
+                               url: '../../index/home/home',
+                            })
+                         }
+                       }
+                  })
+        }
+      }
+    })
     that.getalllist()
   },
 })

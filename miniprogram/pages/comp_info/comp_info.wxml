@@ -32,7 +32,7 @@
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view>主 办 方</view>
+              <view>主办方</view>
             </view>
             <view class="item-right">{{complist.sponsor}}</view>
           </view>
@@ -87,7 +87,7 @@
           </view>
           <view class="item solid-bottom">
             <view class="item-left">
-              <view>主 办 方</view>
+              <view>主办方</view>
             </view>
             <view class="item-right">{{complist.sponsor}}</view>
           </view>
